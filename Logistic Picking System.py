@@ -6,8 +6,35 @@ warehouse_inventory = {}
 product_list = []
 user = "TestUser1"
 
+clear_console = lambda: os.system('cls')
 
 def program_initialiser():
+    clear_console()
+    action = 0
+    login = input("Username: ")
+    
+
+    
+        # while login != user:
+        #     print("try again")
+    if login == user:
+        while True:
+            print(f"Welcome {user}!")
+            print("------------------")
+            print("")
+            action = int(input("Select a program: - (1) Add Inventory -- (2) Check Inventory   "))
+            if action == 1:
+                item = input("What item to add to inventory  -  ")
+                quantity = int(input("How many units  -  "))
+                add_inventory(item, quantity)
+
+            elif action == 2:
+                check_inventory()
+            
+    
+
+        
+       
     return
 
 def create_TO():        
@@ -35,10 +62,8 @@ def pickting_TO():
 
 
 
-add_inventory("Sol de Janeiro - Lip Balm", 25)
-add_inventory("Sol de Janeiro - Lip Balm", 25)
-add_inventory("Sol de Janeiro - Lip Balm", 25)
-add_inventory("Sol de Janeiro - Booty Balm", 25)
+# add_inventory("Sol de Janeiro - Lip Balm", 25)
+# add_inventory("Sol de Janeiro - Body Cream", 25)
+# check_inventory()
 
-
-check_inventory()
+program_initialiser()
