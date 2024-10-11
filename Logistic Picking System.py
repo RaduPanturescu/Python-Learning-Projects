@@ -1,10 +1,16 @@
 import random as r
 import os
 
+# product_code = {"Sol de Janeiro", 9400234596}
 TO_backlog = {}
 warehouse_inventory = {}
 product_list = []
 user = "TestUser1"
+
+test_order_1 = {"Sol de Janeiro": 5,
+                "Gucci Flora": 1,
+                "Prada Paradox": 1} 
+
 
 clear_console = lambda: os.system('cls')
 
@@ -13,10 +19,6 @@ def program_initialiser():
     action = 0
     login = input("Username: ")
     
-
-    
-        # while login != user:
-        #     print("try again")
     if login == user:
         while True:
             print(f"Welcome {user}!")
@@ -31,14 +33,29 @@ def program_initialiser():
             elif action == 2:
                 check_inventory()
             
-    
+    return
+
+def create_TO(picking_quantity):   
+    TO_List = {}
+    TO_number = r.randint(900000000,999999999)
+    item = ""
+    quantity = 0
+    if TO_number not in TO_backlog:
+        # TO_backlog.add(TO_number)
+        print("ok")
+    for times in range(picking_quantity+1):
+        if item not in TO_backlog:
+            item = input("Item to order - ")
+            quantity = input("How many? - ")
+            TO_backlog[item] = quantity
+        if item in TO_backlog:
+            stock = TO_backlog[item]
+            TO_backlog[item] = stock + quantity
+    print(TO_backlog)
+
 
         
-       
-    return
 
-def create_TO():        
-    return
 
 def remove_TO():
     return
@@ -66,4 +83,5 @@ def pickting_TO():
 # add_inventory("Sol de Janeiro - Body Cream", 25)
 # check_inventory()
 
-program_initialiser()
+# program_initialiser()
+create_TO(3)
