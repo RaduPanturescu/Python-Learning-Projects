@@ -1,5 +1,7 @@
 import random as r
 import os
+from datetime import datetime
+import time
 
 # product_code = {"Sol de Janeiro", 9400234596}
 TO_backlog = {"938240750":1}
@@ -91,16 +93,30 @@ def pickting_TO():
 
 class TO:
     def __init__(self, creation_date, to_code, order_products, order_quantity):
+        self.self = self
         self.date = creation_date
         self.code = to_code
         self.products = order_products
         self.quantity = order_quantity
+        if self not in TO_backlog:
+            TO_backlog[self] = to_code
+        else:
+            return "Error"
 
     def print_TO(self):
         print(f"""TO Created at - {self.date}
 TO code - {self.code}
 Products ordered - {self.products}
 Ammount ordered - {self.quantity}""")
+    
+    def delete_TO(self):
+        TO_backlog.pop(self)
+    
 
-TO1 = TO("12.02.2024", r.randint(0,1000), "Sex de janeiro", r.randint(1,10))
+TO1 = TO(datetime.fromtimestamp(time.time()), r.randint(0,1000), "Sol de janeiro", r.randint(1,10))
+time.sleep(2)
+TO2 = TO(datetime.fromtimestamp(time.time()), r.randint(0,1000), "Sol de janeiro", r.randint(1,10))
+
 TO.print_TO(TO1)
+TO.print_TO(TO2)
+print(TO_backlog)
